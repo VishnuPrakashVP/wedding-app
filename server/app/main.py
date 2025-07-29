@@ -9,7 +9,10 @@ app = FastAPI(
     version="1.0.0"
 )
 
-app.mount("/media_storage", StaticFiles(directory="media_storage"), name="media")
+# Mount static files only if directory exists (for Vercel compatibility)
+import os
+if os.path.exists("media_storage"):
+    app.mount("/media_storage", StaticFiles(directory="media_storage"), name="media")
 
 # CORS
 app.add_middleware(
@@ -38,3 +41,8 @@ def root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "services": ["api", "database", "storage", "moderation", "payments"]}
+
+@app.get("/test")
+def test_endpoint():
+    """Simple test endpoint to verify deployment"""
+    return {"message": "API is working!", "timestamp": "2024-01-01"}

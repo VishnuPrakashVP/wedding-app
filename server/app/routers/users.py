@@ -8,8 +8,8 @@ from app.config import settings
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
-# Simple JWT secret for demo (use proper secret in production)
-JWT_SECRET = "your-secret-key"
+# JWT configuration
+JWT_SECRET = settings.JWT_SECRET_KEY or "your-secret-key"
 JWT_ALGORITHM = "HS256"
 
 def create_token(user_id: str) -> str:

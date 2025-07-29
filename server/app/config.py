@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # MongoDB Configuration
-    MONGO_URL: str = "mongodb://localhost:27017"
+    MONGODB_URL: str = "mongodb://localhost:27017"
     DB_NAME: str = "wedding_app"
     
     # Supabase Configuration (for storage)
@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     # NSFW API Configuration (for moderation)
     NSFW_API_URL: str = ""
     NSFW_API_KEY: str = ""
+    
+    # JWT Configuration
+    JWT_SECRET_KEY: str = "your-secret-key-change-in-production"
 
     class Config:
         env_file = ".env"

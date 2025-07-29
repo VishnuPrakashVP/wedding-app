@@ -8,8 +8,17 @@
   ],
   "routes": [
     {
+      "src": "/media_storage/(.*)",
+      "dest": "/media_storage/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "app/main.py"
     }
-  ]
+  ],
+  "functions": {
+    "app/main.py": {
+      "maxDuration": 30
+    }
+  }
 } 
